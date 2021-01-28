@@ -1,4 +1,4 @@
-# Virome analysis workflow
+## Virome analysis workflow
 ## Read-based analysis
 In progress
 ## Contig-based analysis
