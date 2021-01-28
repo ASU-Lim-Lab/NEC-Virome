@@ -1,2 +1,2 @@
-# 16S analysis workflow
+## 16S analysis workflow
 In progress
