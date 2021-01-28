@@ -2,9 +2,9 @@
 
 ## Contents
 
-**Virome analysis**
-- Read-based
-- Contig-based
+**Virome analysis** <br />
+-Read-based <br />
+-Contig-based <br />
 **Bacterial microbiome analysis (16S)**
 
 Repository in progress
