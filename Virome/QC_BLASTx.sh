@@ -1,0 +1,28 @@
+#!/bin/bash
+mkdir /path/to/fastq/blastxOutputs;
+mkdir /path/to/fastq/logFiles;
+mkdir /path/to/fastq/qc_fasta;
+mkdir /path/to/fastq/qc_fastq;
+gunzip -k /path/to/fastq/SampleName_S1_R1.fastq.gz;
+gunzip -k /path/to/fastq/SampleName_S1_R2.fastq.gz;
+mkdir /path/to/fastq/SampleName;
+bbduk.sh in=/path/to/fastq/SampleName_S1_R1.fastq in2=/path/to/fastq/SampleName_S1_R2.fastq ref=/path/to/adapter/sequences out=/path/to/fastq/SampleName/SampleName-adaptTrimQC_R1.fastq out2=/path/to/fastq/SampleName/SampleName-adaptTrimQC_R2.fastq k=25 hdist=1 ktrim=r qtrim=rl mink=11 trimq=30 minlength=75 minavgquality=20 removeifeitherbad=f otm=t tpe=t overwrite=t 1> /path/to/fastq/SampleName/SampleName-adaptTrimQC.log.txt 2>&1;
+bbduk.sh in=/path/to/fastq/SampleName/SampleName-adaptTrimQC_R1.fastq in2=/path/to/fastq/SampleName/SampleName-adaptTrimQC_R2.fastq ref=/path/to/phix174 out=/path/to/fastq/SampleName/SampleName-R1-phixRemoved.fastq out2=/path/to/fastq/SampleName/SampleName-R2-phixRemoved.fastq k=31 hdist=1 overwrite=t 1> /path/to/fastq/SampleName/SampleNamephixRemoved.log.txt 2>&1;
+bbmap.sh minid=.95 maxindel=3 bwr=0.16 bw=12 quickmatch fast minhits=2 -Xmx64g path=/path/to/human-database in=/path/to/fastq/SampleName/SampleName-R1-phixRemoved.fastq in2=/path/to/fastq/SampleName/SampleName-R2-phixRemoved.fastq outu=/path/to/fastq/SampleName/SampleNamehostRemoved.fastq outm=/path/to/fastq/SampleName/SampleNamehostMatched.fastq 1>/path/to/fastq/SampleName/SampleNamehostRemoval.log.txt 2>&1;
+dedupe.sh in=/path/to/fastq/SampleName/SampleNamehostRemoved.fastq out=/path/to/fastq/SampleName/SampleNamefirstDeduplication.fastq outd=/path/to/fastq/SampleName/SampleNamefirstDuplication.fastq csf=dedupe.cluster.stats overwrite=t minidentity=99 1> /path/to/fastq/SampleName/SampleNamefirstDeduplication.log.txt 2>&1;
+bbmerge.sh in=/path/to/fastq/SampleName/SampleNamefirstDeduplication.fastq out=/path/to/fastq/SampleName/SampleNamefirstDeduplicationMerged.fastq outu=/path/to/fastq/SampleName/SampleNamefirstDeduplicationUnMerged.fastq 1>/path/to/fastq/SampleName/SampleNamefirstDeduplicationMerged.log.txt 2>&1;
+cat /path/to/fastq/SampleName/SampleNamefirstDeduplicationMerged.fastq /path/to/fastq/SampleName/SampleNamefirstDeduplicationUnMerged.fastq > /path/to/fastq/SampleName/SampleNamefirstDeduplicationMerged_UnMerged.fastq;
+dedupe.sh in=/path/to/fastq/SampleName/SampleNamefirstDeduplicationMerged_UnMerged.fastq out=/path/to/fastq/SampleName/SampleNamesecondDeduplication.fastq outd=/path/to/fastq/SampleName/SampleNamesecondtDuplication.fastq csf=dedupe.cluster.stats overwrite=t minidentity=100 ac=f 1> /path/to/fastq/SampleName/SampleNamesecondDeduplication.log.txt 2>&1;
+bbduk.sh in=/path/to/fastq/SampleName/SampleNamesecondDeduplication.fastq out=/path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.fastq minlength=75 overwrite=t 1>/path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.log.txt 2>&1; 
+sed -n '1~4s/^@/>/p;2~4p' /path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.fastq > /path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.fasta;
+blastx -db /path/to/RefSeqPlusNeighborSeq/ -query /path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.fasta -evalue 1e-3 -num_threads 120 -out /path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.blastx.out;
+cp /path/to/fastq/SampleName/SampleName-adaptTrimQC.log.txt /path/to/fastq/logFiles;
+cp /path/to/fastq/SampleName/SampleNamephixRemoved.log.txt /path/to/fastq/logFiles;
+cp /path/to/fastq/SampleName/SampleNamehostRemoval.log.txt /path/to/fastq/logFiles;
+cp /path/to/fastq/SampleName/SampleNamefirstDeduplication.log.txt /path/to/fastq/logFiles;
+cp /path/to/fastq/SampleName/SampleNamefirstDeduplicationMerged.log.txt /path/to/fastq/logFiles;
+cp /path/to/fastq/SampleName/SampleNamesecondDeduplication.log.txt /path/to/fastq/logFiles;
+cp /path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.log.txt /path/to/fastq/logFiles;
+cp /path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.fastq /path/to/fastq/qc_fastq;
+cp /path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.fasta /path/to/fastq/qc_fasta;
+cp /path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.blastx.out /path/to/fastq/blastxOutputs;
