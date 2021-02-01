@@ -1,4 +1,4 @@
-# NEC-Virome: Workflow and code for: Convergence of the preterm infant gut virome prior to necrotizing enterocolitis (manuscript under consideration).
+## NEC-Virome: Workflow and code for: Convergence of the preterm infant gut virome prior to necrotizing enterocolitis (manuscript under consideration).
 
 ## Contents
 
