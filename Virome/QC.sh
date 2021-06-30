@@ -1,5 +1,4 @@
 #!/bin/bash
-mkdir /path/to/fastq/blastxOutputs;
 mkdir /path/to/fastq/logFiles;
 mkdir /path/to/fastq/qc_fasta;
 mkdir /path/to/fastq/qc_fastq;
@@ -15,7 +14,6 @@ cat /path/to/fastq/SampleName/SampleNamefirstDeduplicationMerged.fastq /path/to/
 dedupe.sh in=/path/to/fastq/SampleName/SampleNamefirstDeduplicationMerged_UnMerged.fastq out=/path/to/fastq/SampleName/SampleNamesecondDeduplication.fastq outd=/path/to/fastq/SampleName/SampleNamesecondtDuplication.fastq csf=dedupe.cluster.stats overwrite=t minidentity=100 ac=f 1> /path/to/fastq/SampleName/SampleNamesecondDeduplication.log.txt 2>&1;
 bbduk.sh in=/path/to/fastq/SampleName/SampleNamesecondDeduplication.fastq out=/path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.fastq minlength=75 overwrite=t 1>/path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.log.txt 2>&1; 
 sed -n '1~4s/^@/>/p;2~4p' /path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.fastq > /path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.fasta;
-blastx -db /path/to/RefSeqPlusNeighborSeq/ -query /path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.fasta -evalue 1e-3 -num_threads 120 -out /path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.blastx.out;
 cp /path/to/fastq/SampleName/SampleName-adaptTrimQC.log.txt /path/to/fastq/logFiles;
 cp /path/to/fastq/SampleName/SampleNamephixRemoved.log.txt /path/to/fastq/logFiles;
 cp /path/to/fastq/SampleName/SampleNamehostRemoval.log.txt /path/to/fastq/logFiles;
@@ -25,4 +23,3 @@ cp /path/to/fastq/SampleName/SampleNamesecondDeduplication.log.txt /path/to/fast
 cp /path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.log.txt /path/to/fastq/logFiles;
 cp /path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.fastq /path/to/fastq/qc_fastq;
 cp /path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.fasta /path/to/fastq/qc_fasta;
-cp /path/to/fastq/SampleName/SampleNamesecondDeduplication_filtered.blastx.out /path/to/fastq/blastxOutputs;
