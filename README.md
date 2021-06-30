@@ -4,11 +4,13 @@
 
 **Virome analysis** <br />
 -Workflow <br />
--QC and BLASTx script <br />
+-QC script <br />
 -Contig building and mapping script <br />
 -taxonomizr script <br />
 -Decontam, alpha and beta diversity script <br />
--Prevalence and abundance linear mixed modeling script <br />
+-LEfSe script <br />
+-Prodigal and PHACTS script <br />
+-Maaslin2 script <br />
 **Bacterial microbiome analysis (16S)** <br />
 -Workflow <br />
--Qiime2 script
+-QIIME2 script

@@ -5,4 +5,4 @@
 4. Alpha and beta diversity analyses (manuscript Figures 1, 2 and 3). See Decontam-AlphaDiv-BetaDiv.R
 5. LEfSe analysis (manuscript Figure 3). See LEfSe.sh
 6. Predict phage lifestyles (supplementary figure 3). See Prodigal-PHACTS.sh
-7. Transkingdom analysis (manuscript figure 4).
+7. Transkingdom analysis (manuscript figure 4). See Maaslin2.sh
