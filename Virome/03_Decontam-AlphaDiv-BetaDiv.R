@@ -59,7 +59,7 @@ dist.hel <-dist.ldc(dataTransposed5, method = "hellinger")
 dist2 <-as.matrix(dist.hel)
 write.table(dist2, "Hellinger.txt", sep = '\t')
 
-#PCoA. Input: Contig count or presence/absence table and metadata file. Output: PCoA plot.
+#PCoA. Input: Contig count table and metadata file. Output: PCoA plot.
 library(phyloseq)
 library(ggplot2)
 feature_table<-read.delim("ContigCountsRPK.txt", row.names = 1)
@@ -86,7 +86,7 @@ PCoA_Plot  <- plot_ordination(physeq = physeq,
   scale_shape_manual(values = c( 19, 19, 19, 19, 19, 19, 19, 19, 19, 19))
 PCoA_Plot
 
-#PERMANOVA. Input: Contig count or presence/absence table and metadata file. PMA is a continuous variable. Case/control status and subject ID are categorical.
+#PERMANOVA. Input: Contig count table and metadata file. PMA is a continuous variable. Case/control status and subject ID are categorical.
 library(vegan)
 set.seed(1)
 data1<-read.delim("ContigsCountsRPK_controls.txt", row.names = 1)
