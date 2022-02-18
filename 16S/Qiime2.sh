@@ -1,5 +1,5 @@
 #Import sample fastq files to Qiime2
-qiime tools import --type 'SampleData[SequencesWithQuality]' --input-path ctl/ --input-format CasavaOneEightSingleLanePerSampleDirFmt --output-path seqs.qza
+qiime tools import --type 'SampleData[SequencesWithQuality]' --input-path fastq/ --input-format CasavaOneEightSingleLanePerSampleDirFmt --output-path seqs.qza
 
 #Inspect quality. 
 qiime demux summarize --i-data seqs.qza --o-visualization seqs.qzv
