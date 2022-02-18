@@ -1,8 +1,7 @@
 ## Virome analysis workflow
-1. Quality-filter reads. See QC.sh
-2. Build contigs, map reads from samples to contigs, normalize contig counts. See Contig-Building-Mapping.sh
-3. Run decontam and remove contaminants and false positives. Normalize contig counts. See Decontam-AlphaDiv-BetaDiv.R
-4. Alpha and beta diversity analyses (manuscript Figures 1, 2 and 3). See Decontam-AlphaDiv-BetaDiv.R
-5. LEfSe analysis (manuscript Figure 3). See LEfSe.sh
-6. Predict phage lifestyles (supplementary figure 3). See Prodigal-PHACTS.sh
-7. Transkingdom analysis (manuscript figure 4). See Maaslin2.sh
+1. Quality-filter reads. See 01_QC.sh
+2. Build contigs, map reads from samples to contigs. See 02_Contig-Building-Mapping.sh
+3. Run decontam. Remove contaminants and false positives, normalize contig counts. Perform alpha and beta diversity analyses (manuscript Figures 1, 2 and 3). See 03_Decontam-AlphaDiv-BetaDiv.R
+4. LEfSe analysis (manuscript Figure 3). See 04_LEfSe.sh
+5. Predict phage lifestyles (supplementary figure 3). See 05_Prodigal-PHACTS.sh
+6. Transkingdom analysis (manuscript figure 4). See 06_Maaslin2.sh
