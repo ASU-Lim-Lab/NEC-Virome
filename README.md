@@ -13,4 +13,5 @@
 -Maaslin2 script <br />
 **Bacterial microbiome analysis (16S)** <br />
 -Workflow <br />
--QIIME2 script
+-QIIME2 script <br />
+-ANCOM-II parameters
