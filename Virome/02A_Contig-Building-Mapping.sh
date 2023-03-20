@@ -31,8 +31,8 @@ blastn -task megablast -db /path/to/ntDatabase -query candidate-viral-contigs.fa
 bwa index candidate-viral-contigs.fasta
 
 #Map QC reads from samples to candidate viral contigs.
-mkdir /Mapping;
-mkdir /Counts;
+mkdir /path/to/Mapping;
+mkdir /path/to/Counts;
 bwa mem -M -L 97,97 candidate-viral-contigs.fasta /path/to/SampleName.fasta >/path/to/Mapping/SampleName-readsMapped.sam;
 samtools view -h -F 0x900 /path/to/Mapping/SampleName-readsMapped.sam > /path/to/Mapping/SampleName-secondaryRemoved.sam;
 samtools view -h -F 0x4 /path/to/Mapping/SampleName-secondaryRemoved.sam > /path/to/Mapping/SampleName-secondaryUnMappedRemoved.sam;
