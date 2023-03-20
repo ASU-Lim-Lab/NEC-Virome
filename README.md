@@ -1,4 +1,4 @@
-## NEC-Virome <br />
+## NEC-Virome
 Workflow and code for: Longitudinal gut virome analysis identifies specific viral signatures that precede necrotizing enterocolitis onset in preterm infants (Kaelin et al., Nat Microbiol. 2022 May;7(5):653-662).
 
 ## Contents
